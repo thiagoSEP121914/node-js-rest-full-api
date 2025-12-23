@@ -10,18 +10,13 @@
     "target": "es2022",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"]
     },
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
+    "strict": true, // ativa todas as checagens de TS
     "resolveJsonModule": true
   },
   "include": ["src"],
