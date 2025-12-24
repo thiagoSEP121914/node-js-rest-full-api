@@ -4,6 +4,8 @@ import { routes } from "./routes";
 import { errorHandler } from "./middlewares/errorHandler";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import pinoHttp from "pino-http";
+import { logger } from "./logger";
 
 const options = {
     definition: {
@@ -19,6 +21,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const app = express();
+app.use(pinoHttp({ logger }));
 
 app.use(cors());
 

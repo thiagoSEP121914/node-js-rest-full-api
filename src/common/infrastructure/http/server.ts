@@ -1,9 +1,18 @@
+import { dataSources } from "../typeorm";
 import { app } from "./app";
 import { env } from "./env";
+import { logger } from "./logger";
 
 const PORT = env.PORT;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on the port: ${PORT}`);
-    console.log(`Apis docs availables at GET /docs`);
-});
+dataSources
+    .initialize()
+    .then(() => {
+        app.listen(PORT, () => {
+            logger.info(`Server is running on the PORT: ${PORT}`);
+            logger.info("API docs available at GET / docs");
+        });
+    })
+    .catch((error) => {
+        logger.error(`Erro initializing data source ${error}`);
+    });
