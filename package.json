@@ -5,11 +5,11 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "dev": "npx dotenv-cli -e .env -- ts-node-dev -r tsconfig-paths/register --transpile-only src/common/infrastructure/http/server.ts",
-        "test": "npx dotenv-cli -e .env.test -- jest -- runInband",
+        "dev": "npx dotenv-cli -e .env -- tsx watch src/common/infrastructure/http/server.ts",
+        "test": "npx dotenv-cli -e .env.test -- jest --runInBand",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+        "typeorm": "tsx ./node_modules/typeorm/cli.js"
     },
     "repository": {
         "type": "git",
@@ -18,7 +18,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "type": "commonjs",
+    "type": "module",
     "bugs": {
         "url": "https://github.com/thiagoSEP121914/node-js-rest-full-api/issues"
     },
@@ -45,6 +45,7 @@
         "ts-jest": "^29.4.6",
         "ts-node-dev": "^2.0.0",
         "tsconfig-paths": "^4.2.0",
+        "tsx": "^4.21.0",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.50.1"
     },

@@ -1,24 +1,25 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2022",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"]
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es2022",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./src",
+        "paths": {
+            "@/*": ["*"]
+        },
+        "incremental": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "resolveJsonModule": true
     },
-    "incremental": true,
-    "skipLibCheck": true,
-    "strict": true, // ativa todas as checagens de TS
-    "resolveJsonModule": true
-  },
-  "include": ["src"],
-  "exclude": ["dist", "node_modules"]
+    "include": ["src", "jest.config.mts"],
+    "exclude": ["dist", "node_modules"]
 }

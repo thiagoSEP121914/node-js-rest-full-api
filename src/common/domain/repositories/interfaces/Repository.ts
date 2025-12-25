@@ -16,12 +16,12 @@ export type SearchOutPut<Model> = {
     filter: string | null;
 };
 
-export interface Repository<Model, Object> {
+export interface Repository<Model, Obj> {
     findAll(params: SearchInput): Promise<SearchOutPut<Model>>;
 
     findById(id: string): Promise<Model>;
 
-    create(data: Object): Model;
+    create(data: Obj): Model;
 
     insert(model: Model): Promise<Model>;
 

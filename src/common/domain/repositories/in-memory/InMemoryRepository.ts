@@ -11,10 +11,10 @@ export type ObjProps = {
     [key: string]: unknown;
 };
 
-export abstract class InMemoryRepository<
-    Model extends ModelProps,
-    Object extends ObjProps,
-> implements Repository<Model, Object> {
+export abstract class InMemoryRepository<Model extends ModelProps> implements Repository<
+    Model,
+    ObjProps
+> {
     items: Model[] = [];
     sortableFields: string[] = [];
 
@@ -44,7 +44,7 @@ export abstract class InMemoryRepository<
         return this.get(id);
     }
 
-    create(data: Object) {
+    create(data: ObjProps) {
         const model = {
             id: randomUUID(),
             created_at: new Date(),
