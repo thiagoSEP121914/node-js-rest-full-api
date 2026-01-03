@@ -20,6 +20,6 @@
         "strict": true,
         "resolveJsonModule": true
     },
-    "include": ["src", "jest.config.mts"],
+    "include": ["src", "jest.config.mts", "tests/units/features"],
     "exclude": ["dist", "node_modules"]
 }

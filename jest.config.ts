@@ -6,29 +6,40 @@ const config: JestConfigWithTsJest = {
     testEnvironment: "node",
     extensionsToTreatAsEsm: [".ts"],
     moduleFileExtensions: ["ts", "js", "json"],
+
     moduleNameMapper: {
-        ...pathsToModuleNameMapper(
-            {
-                "@/*": ["*"],
-            },
-            {
-                prefix: "<rootDir>/src/",
-            },
-        ),
         "^(\\.{1,2}/.*)\\.js$": "$1",
+        ...pathsToModuleNameMapper({ "@/*": ["src/*"] }, { prefix: "<rootDir>/" }),
     },
+
     transform: {
         "^.+\\.ts$": [
             "ts-jest",
             {
                 useESM: true,
+                tsconfig: {
+                    module: "ESNext",
+                },
+            },
+        ],
+        // 👇 ADICIONADO: transformar .js também
+        "^.+\\.js$": [
+            "ts-jest",
+            {
+                useESM: true,
+                tsconfig: {
+                    module: "ESNext",
+                },
             },
         ],
     },
+
+    transformIgnorePatterns: ["node_modules/(?!@faker-js)"],
+
     testRegex: ".*\\.spec\\.ts$",
     collectCoverageFrom: ["src/**/*.ts", "!src/**/*.spec.ts", "!src/**/*.d.ts"],
     coverageDirectory: "./coverage",
-    roots: ["<rootDir>/src"],
+    roots: ["<rootDir>/src", "<rootDir>/tests"],
 };
 
 export default config;

@@ -13,7 +13,7 @@ export class InMemoryProductsRepository
     async findByName(name: string): Promise<ProductModel> {
         const product = this.items.find((item) => item.name === name);
         if (!product) {
-            throw new NotFoundError("Product not found");
+            throw new NotFoundError(`Product not found using name ${name}`);
         }
         return product;
     }
