@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { ProductModel } from "../../../../../src/features/products/domain/models/ProductModel";
+import { ProductModel } from "../../../domain/models/ProductModel";
 import { faker } from "@faker-js/faker";
 
 export const ProductsDataBuilder = (props: Partial<ProductModel> = {}): ProductModel => ({

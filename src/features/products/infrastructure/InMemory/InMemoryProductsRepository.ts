@@ -8,7 +8,7 @@ export class InMemoryProductsRepository
     extends InMemoryRepository<ProductModel>
     implements ProductRepository
 {
-    sortableFields: string[] = ["name", "created_at"];
+    sortableFields: string[] = ["name", "createdAt"]; // 👈 CORRIGIDO
 
     async findByName(name: string): Promise<ProductModel> {
         const product = this.items.find((item) => item.name === name);
@@ -30,9 +30,10 @@ export class InMemoryProductsRepository
     }
 
     async conflictingName(name: string): Promise<void> {
-        const product = this.items.filter((item) => item.name === name);
+        const product = this.items.find((item) => item.name === name); // 👈 MUDOU de filter para find
         if (product) {
-            throw new ConflictError("The product name already exist");
+            // 👈 AGORA funciona corretamente
+            throw new ConflictError("Name already used on another product"); // 👈 MENSAGEM CORRIGIDA
         }
     }
 
@@ -43,7 +44,7 @@ export class InMemoryProductsRepository
         if (!filter) {
             return items;
         }
-        return items.filter((item) => item.name.toLowerCase().includes(filter.toLocaleLowerCase()));
+        return items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()));
     }
 
     protected async applySort(
@@ -51,6 +52,6 @@ export class InMemoryProductsRepository
         sort: string | null,
         sort_dir: string | null,
     ): Promise<ProductModel[]> {
-        return super.applySort(items, sort ?? "created_at", sort_dir ?? "desc");
+        return super.applySort(items, sort ?? "createdAt", sort_dir ?? "desc"); // 👈 CORRIGIDO
     }
 }
