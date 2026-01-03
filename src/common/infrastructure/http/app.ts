@@ -6,6 +6,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import pinoHttp from "pino-http";
 import { logger } from "./logger";
+import helmet from "helmet";
 
 const options = {
     definition: {
@@ -21,6 +22,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const app = express();
+app.use(helmet());
 app.use(pinoHttp({ logger }));
 
 app.use(cors());
