@@ -38,4 +38,18 @@ describe("ProductsTypeOrmRepository integration tests", () => {
             expect(result.id).toEqual(product.id);
         });
     });
+
+    describe("create", () => {
+        it("should create a new product object", () => {
+            const data = ProductsDataBuilder({ name: "Product 1" });
+            const product = productRepository.create(data);
+            expect(product.name).toEqual(data.name);
+        });
+
+        it("should insert a new product in database", async () => {
+            const data = ProductsDataBuilder({ name: "Product 1" });
+            const product = await productRepository.insert(data);
+            expect(product.name).toEqual(data.name);
+        });
+    });
 });
