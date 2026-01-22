@@ -1,6 +1,6 @@
 import { dataSources } from "../typeorm";
 import { app } from "./app";
-import { env } from "./env";
+import { env } from "../env";
 import { logger } from "./logger";
 
 const PORT = env.PORT;

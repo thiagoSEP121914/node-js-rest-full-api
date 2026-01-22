@@ -1,16 +1,16 @@
 import { DataSource } from "typeorm";
-import { env } from "../env";
+import { env } from "@/common/infrastructure/env/index";
 
-export const dataSources = new DataSource({
+export const testDataSource = new DataSource({
     type: env.DB_TYPE,
     host: env.DB_HOST,
     port: env.DB_PORT,
-    schema: env.DB_SCHEMA,
-    database: env.DB_NAME,
     username: env.DB_USER,
     password: env.DB_PASS,
+    database: env.DB_NAME,
+    schema: env.DB_SCHEMA,
     entities: ["**/entities/**/*.ts"],
     migrations: ["**/migrations/**/*.ts"],
-    synchronize: false,
-    logging: false,
+    synchronize: true,
+    logging: true,
 });

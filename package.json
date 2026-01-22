@@ -9,7 +9,10 @@
         "test": "npx dotenv-cli -e .env.test -- jest --runInBand",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "typeorm": "tsx ./node_modules/typeorm/cli.js"
+        "typeorm": "tsx ./node_modules/typeorm/cli.js",
+        "pretest:int": "docker run --name testsdb -e POSTGRES_PASSWORD=postgres -p 5433:5432 -d postgres",
+        "test:int": "sleep 5 && NODE_OPTIONS=--experimental-vm-modules npx dotenv-cli -e .env.test -- jest --runInBand --config ./jest.int.config.ts",
+        "posttest:int": "docker stop testsdb && docker rm testsdb"
     },
     "repository": {
         "type": "git",

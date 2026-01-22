@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { randomUUID } from "node:crypto";
 import { NotFoundError } from "../../errors/NotFoundError";
 import { Repository, SearchInput, SearchOutPut } from "../interfaces/Repository";
 
 export type ModelProps = {
     id?: string;
-    [key: string]: unknown;
 };
 
 export type ObjProps = {
@@ -86,8 +86,8 @@ export abstract class InMemoryRepository<Model extends ModelProps> implements Re
         }
 
         return [...items].sort((a, b) => {
-            const aValue = a[sort] as number;
-            const bValue = b[sort] as number;
+            const aValue = (a as any)[sort] as number;
+            const bValue = (b as any)[sort] as number;
 
             if (aValue < bValue) {
                 return sort_dir === "asc" ? -1 : 1;

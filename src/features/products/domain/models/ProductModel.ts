@@ -5,5 +5,4 @@ export interface ProductModel {
     quantity: number;
     createdAt: Date;
     updateAt: Date;
-    [key: string]: unknown;
 }
